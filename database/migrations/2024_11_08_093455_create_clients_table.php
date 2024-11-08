@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('business_name')->nullable();
             $table->string('ice')->nullable()->unique();
             $table->string('website')->nullable();
+            $table->json('options')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
