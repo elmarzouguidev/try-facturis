@@ -36,7 +36,7 @@ class NewTryRequestedNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->from(config('try.from.email'), 'Facturis APP')
-            ->greeting("Bonjour $notifiable->full_name")
+            ->greeting("Bonjour $notifiable->name")
             ->subject(Lang::get("Nouvelle Demande d'essai FACTURIS"))
             ->line(Lang::get('Les détails de la demande :'))
             ->line('***********************************************************')
