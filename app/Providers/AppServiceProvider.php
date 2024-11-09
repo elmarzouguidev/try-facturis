@@ -88,18 +88,9 @@ class AppServiceProvider extends ServiceProvider
      */
     private function configureRateLimiter(): void
     {
-        RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(8)->by($request->user()?->id ?: $request->ip())
-                ->response(function ($request, array $headers) {
-                    return response()->json(['message' => 'Request limit reached. You are temporarily blocked due to excessive requests. Try again later ...'], 429, $headers);
-                });
-        });
 
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(10)->by($request->user()?->id ?: $request->ip())
-                ->response(function ($request, array $headers) {
-                    return response()->json(['message' => 'Request limit reached. You are temporarily blocked due to excessive requests. Try again later ...'], 429, $headers);
-                });
+        RateLimiter::for('try', function (Request $request) {
+            return Limit::perMinute(6)->by($request->user()?->id ?: $request->ip());
         });
     }
 }
