@@ -30,10 +30,12 @@ class CheckConnection
     private static function check($domainUrl): bool
     {
         try {
-            $response = Http::timeout(3)->get($domainUrl);
+            $response = Http::timeout(5)->get($domainUrl);
 
             return $response->successful();
         } catch (\Illuminate\Http\Client\ConnectionException $e) {
+
+            info($e->getMessage(), ['error_timeout']);
 
             return false;
         }
