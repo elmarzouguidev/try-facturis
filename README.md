@@ -14,6 +14,13 @@ Facturis est la solution SaaS ultime pour les TPE, PME, start-ups et commerçant
 - **[WEDOAPP](https://wedoapp.ma/)**
 
 
+## Screenshots : 
+
+| Form |
+| --- |
+| ![Form](screens/form.png) |
+
+
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Facturis, please send an e-mail to Elmarzougui Abdelghafour via [abdo@wedoapp.ma](mailto:abdo@wedoapp.ma). All security vulnerabilities will be promptly addressed.
