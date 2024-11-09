@@ -7,6 +7,9 @@ use App\Http\Requests\Facturis\Try\TryFormRequest;
 use App\Models\Facturis\Client;
 use App\Models\Facturis\Plan;
 use App\Models\Tools\Country;
+use App\Models\User;
+use App\Notifications\Facturis\Try\NewTryRequestedNotification;
+use App\Services\CheckConnection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -33,20 +36,26 @@ class TryController extends Controller
         try {
             DB::beginTransaction();
             $plan = Plan::whereUuid($request->pack)->first();
-            $demande = new Client();
-            $demande->full_name = $request->full_name;
-            $demande->email = $request->email;
-            $demande->telephone = $request->telephone;
-            $demande->city = $request->city;
-            $demande->address = $request->address;
-            $demande->business_name = $request->business_name;
-            $demande->ice = $request->ice;
-            $demande->website = $request->website;
-            $demande->country()->associate($request->country);
-            $demande->plan()->associate($plan);
-            $demande->save();
+            $client = new Client();
+            $client->full_name = $request->full_name;
+            $client->email = $request->email;
+            $client->telephone = $request->telephone;
+            $client->city = $request->city;
+            $client->address = $request->address;
+            $client->business_name = $request->business_name;
+            $client->ice = $request->ice;
+            $client->website = $request->website;
+            $client->country()->associate($request->country);
+            $client->plan()->associate($plan);
+            $client->save();
 
             DB::commit();
+
+            if(CheckConnection::isConnected())
+            {
+                $admins = User::role('SuperAdmin')->get();
+                Notification::send($admins, new NewTryRequestedNotification($client));
+            }
 
             return redirect(route('try.get'))->with('success', 'Votre demande a été envoyé avec succès');
         } catch (ValidationException $e) {

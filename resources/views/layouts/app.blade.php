@@ -12,7 +12,10 @@
     <meta content="app_version" name="v2.1" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+
+    @env('production')
     @turnstileScripts()
+    @endenv
 </head>
 
 <body>

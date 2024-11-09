@@ -22,8 +22,8 @@
 
                                 @include('layouts.__messages')
 
-                                <form  class="form-horizontal" action="{{ route('try.post') }}"
-                                    method="post" autocomplete="off">
+                                <form class="form-horizontal" action="{{ route('try.post') }}" method="post"
+                                    autocomplete="off">
                                     @csrf
                                     @honeypot
                                     <div class="row">
@@ -198,9 +198,11 @@
                                             </optgroup>
                                         </select>
                                     </div>
-                                 
+
                                     <div class="mt-3 d-grid">
-                                        <x-turnstile />
+                                        @env('production')
+                                          <x-turnstile />
+                                        @endenv
                                         <button class="g-recaptcha btn btn-primary waves-effect waves-light ">
                                             Envoyer ma demande
                                         </button>
