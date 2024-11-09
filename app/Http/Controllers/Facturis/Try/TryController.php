@@ -52,10 +52,10 @@ class TryController extends Controller
 
             DB::commit();
 
-            if (CheckConnection::isConnected()) {
+            /*if (CheckConnection::isConnected()) {
                 $admins = User::role('SuperAdmin')->get();
                 Notification::send($admins, new NewTryRequestedNotification($client));
-            }
+            }*/
 
             return redirect(route('try.get'))->with('success', 'Votre demande a été envoyé avec succès');
         } catch (ValidationException $e) {
