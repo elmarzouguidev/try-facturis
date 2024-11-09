@@ -22,7 +22,7 @@ class CheckConnection
 
             return true;
         } catch (\Exception $e) {
-            //return info($e->getMessage(), ['error_smtp']);
+            info($e->getMessage(), ['error_smtp']);
             return false;
         }
     }
