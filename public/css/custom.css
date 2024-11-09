@@ -1,0 +1,96 @@
+.btn.btn-light-danger {
+  color: #f64e60;
+  background-color: #ffe2e5;
+  border-color: transparent;
+}
+
+.btn.btn-light-primary {
+  color: #3699ff;
+  background-color: #ffe2e5;
+  border-color: transparent;
+}
+.mini-stats-wid {
+  border-radius: 13px !important;
+}
+
+li .active {
+  background-color: #ebebf9;
+  border-radius: 8px !important;
+}
+td .fc-day-today {
+  background-color: #ebebf9 !important;
+}
+.dataLister::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+input::placeholder {
+  opacity: 0.6 !important;
+}
+textarea::placeholder {
+  opacity: 0.6 !important;
+}
+
+.buttons-excel {
+  color: #ffffff !important;
+  background-color: #50a5f1 !important;
+  border-color: transparent !important;
+}
+.buttons-pdf {
+  color: #ffffff !important;
+  background-color: #c35555 !important;
+  border-color: transparent !important;
+}
+.buttons-colvis span {
+  display: none !important;
+}
+.buttons-colvis:after {
+  content: "Visibilité des colonnes" !important;
+}
+.apexcharts-yaxis-label tspan,
+.apexcharts-xaxis-label tspan {
+  fill: #000000;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/******09/10/2023*****/
+.hstack {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.btn-soft-primary {
+  color: #556ee6;
+  background-color: rgba(85, 110, 230, 0.1);
+  border-color: transparent;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.btn-soft-info {
+  color: #50a5f1;
+  background-color: rgba(80, 165, 241, 0.1);
+  border-color: transparent;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.btn-soft-danger {
+  color: #f46a6a;
+  background-color: rgba(244, 106, 106, 0.1);
+  border-color: transparent;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+
