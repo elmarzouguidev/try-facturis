@@ -12,6 +12,7 @@ use App\Notifications\Facturis\Try\NewTryRequestedNotification;
 use App\Services\CheckConnection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 
@@ -27,7 +28,7 @@ class TryController extends Controller
 
         $countries = Country::select(['id', 'name'])->get();
 
-        return view('try.index',compact('plans','countries'));
+        return view('try.index', compact('plans', 'countries'));
     }
 
     public function store(TryFormRequest $request)
@@ -51,14 +52,20 @@ class TryController extends Controller
 
             DB::commit();
 
-            if(CheckConnection::isConnected())
-            {
+            if (CheckConnection::isConnected()) {
                 $admins = User::role('SuperAdmin')->get();
                 Notification::send($admins, new NewTryRequestedNotification($client));
             }
 
             return redirect(route('try.get'))->with('success', 'Votre demande a été envoyé avec succès');
         } catch (ValidationException $e) {
+
+            Log::channel('try')->info("Error when try to save Data : " . json_encode([
+
+                'url' => $request->url(),
+                'payload' => $e,
+
+            ], JSON_PRETTY_PRINT));
 
             DB::rollback();
 
