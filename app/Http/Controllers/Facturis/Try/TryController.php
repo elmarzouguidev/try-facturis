@@ -20,7 +20,6 @@ class TryController extends Controller
 {
 
 
-
     public function index()
     {
 
@@ -52,10 +51,18 @@ class TryController extends Controller
 
             DB::commit();
 
-            /*if (CheckConnection::isConnected()) {
+            if (CheckConnection::isConnected()) {
+
+                $delay = now()->addMinutes(2);
+
                 $admins = User::role('SuperAdmin')->get();
-                Notification::send($admins, new NewTryRequestedNotification($client));
-            }*/
+
+                $admins->each(function (User $admin) use ($client, $delay) {
+
+                    $admin->notify((new NewTryRequestedNotification($client))->delay($delay));
+                });
+                //Notification::send($admins, new NewTryRequestedNotification($client));
+            }
 
             return redirect(route('try.get'))->with('success', 'Votre demande a été envoyé avec succès');
         } catch (ValidationException $e) {
